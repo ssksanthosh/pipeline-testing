@@ -1,0 +1,18 @@
+pipeline {
+    agent any 
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Checking out code'
+                cleanWs()
+                checkout scm
+            }
+        }    
+        stage('Build') {
+            steps {
+                echo 'Building the code with maven'
+                sh 'mvn -B -DskipTests clean package'
+            }
+        }
+    }
+}
