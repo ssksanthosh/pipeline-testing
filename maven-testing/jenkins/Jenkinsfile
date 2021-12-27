@@ -8,10 +8,16 @@ pipeline {
                 checkout scm
             }
         }    
-        stage('Build') {
+        stage('Code Build') {
             steps {
                 echo 'Building the code with maven'
-                sh 'mvn -B -DskipTests clean package'
+                sh 'cd maven-testig && mvn -B -DskipTests clean package'
+            }
+        }
+        stage('Docker Build') {
+            steps {
+               echo "Building docker image"
+               sh 'docker build -t ssksanthosh/maven-testing .'
             }
         }
     }
