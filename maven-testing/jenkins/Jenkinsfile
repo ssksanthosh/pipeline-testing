@@ -11,7 +11,7 @@ pipeline {
         stage('Code Build') {
             steps {
                 echo 'Building the code with maven'
-                sh 'cd maven-testig && mvn -B -DskipTests clean package'
+                sh 'cd maven-testing && mvn -B -DskipTests clean package'
             }
         }
         stage('Docker Build') {
